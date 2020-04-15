@@ -3,7 +3,7 @@
 This example demonstrates the use of indexes on the following database:
 * Person(SSID, first_name, last_name, email, phone_no, city)
 
-The data set is in [the script file](script.txt) and the code examples can be run on https://sqliteonline.com/
+The data set is in [the script file](./script.txt) and the code examples can be run on https://sqliteonline.com/
 
 * create an index on `phone_no`.
 ```sql
