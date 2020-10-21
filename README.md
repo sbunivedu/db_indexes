@@ -21,7 +21,7 @@ WHERE phone_no = '84697';
 
 It seems the database engine does plan to use the index to speedup the query.
 ```
-selectid    order       from        detail
+id          order       from        detail
 ----------  ----------  ----------  ----------------------------------------------------
 3           0           0           SEARCH TABLE Person USING INDEX idx_person_phone(phone_no=?)
 ```
@@ -51,7 +51,7 @@ EXPLAIN QUERY PLAN
 SELECT * FROM Person WHERE first_name = 'Vinay';
 ```
 ```
-selectid    order       from        detail
+id          order       from        detail
 ----------  ----------  ----------  -----------------
 2           0           0           SCAN TABLE Person
 ```
@@ -67,7 +67,7 @@ SELECT * FROM Person WHERE first_name = 'Vinay';
 ```
 For each index attribute there exists a B-tree.
 ```
-selectid    order       from        detail
+id          order       from        detail
 ----------  ----------  ----------  ----------------------------------------------------
 3           0           0           SEARCH TABLE Person USING INDEX index_person_name (first_name=?)
 ```
@@ -78,7 +78,7 @@ SELECT * FROM Person WHERE first_name = 'vinay' AND last_name = 'jariwala';
 ```
 
 ```
-selectid    order       from        detail
+id          order       from        detail
 ----------  ----------  ----------  ----------------------------------------------------
 3           0           0           SEARCH TABLE Person USING INDEX index_person_name (first_name=? AND last_name=?)
 
@@ -89,7 +89,7 @@ EXPLAIN QUERY PLAN
 SELECT * FROM Person WHERE first_name = 'vinay' OR last_name = 'jariwala';
 ```
 ```
-selectid    order       from        detail
+id          order       from        detail
 ----------  ----------  ----------  -----------------
 2           0           0           SCAN TABLE Person
 ```
@@ -99,13 +99,13 @@ EXPLAIN QUERY PLAN
 SELECT * FROM Person WHERE last_name = 'jariwala';
 ```
 ```
-selectid    order       from        detail
+id          order       from        detail
 ----------  ----------  ----------  -----------------
 2           0           0           SCAN TABLE Person
 ```
 
 To solve the problem, we can create two separate indexes:
-```
+```sql
 CREATE INDEX index_person_first_name ON Person(first_name);
 CREATE INDEX index_person_last_name ON Person(last_name);
 ```
