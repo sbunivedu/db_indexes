@@ -127,4 +127,4 @@ id    parent       notused        detail
 References
 * https://www.tutlane.com/tutorial/sqlite/sqlite-indexes
 * https://dzone.com/articles/database-btree-indexing-in-sqlite
-# https://www.sqlitetutorial.net/sqlite-index
+* https://www.sqlitetutorial.net/sqlite-index
