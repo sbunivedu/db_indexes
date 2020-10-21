@@ -104,6 +104,26 @@ selectid    order       from        detail
 2           0           0           SCAN TABLE Person
 ```
 
+To solve the problem, we can create two separate indexes:
+```
+CREATE INDEX index_person_first_name ON Person(first_name);
+CREATE INDEX index_person_last_name ON Person(last_name);
+```
+
+```sql
+EXPLAIN QUERY PLAN
+SELECT * FROM Person WHERE first_name = 'vinay' OR last_name = 'jariwala';
+```
+```
+id    parent       notused        detail
+--    ------       -------        -------------------------------------------------
+4     0            0              MULTI-INDEX OR
+5     4            0              INDEX1
+11    5            0              SEARCH TABLE Person USING INDEX index_person_first_name (first_name=?)
+16    4            0              INDEX2
+22    16           0              SEARCH TABLE Person USING INDEX index_person_last_name (last_name=?)
+```
+
 References
 * https://www.tutlane.com/tutorial/sqlite/sqlite-indexes
 * https://dzone.com/articles/database-btree-indexing-in-sqlite
