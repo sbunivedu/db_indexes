@@ -124,6 +124,29 @@ id    parent       notused        detail
 22    16           0              SEARCH TABLE Person USING INDEX index_person_last_name (last_name=?)
 ```
 
+
+rowID | first_name | last_name | email
+------|------------|-----------|------
+1 | C | M | E
+2 | A | M | F
+3 | A | L | G
+4 | B | M | O
+5 | C | Q | P
+6 | A | N | X
+
+
+first_name | last_name | rowID
+-----------|-----------|------
+A | M | 2
+A | N | 6
+A | L | 3
+B | M | 4
+C | M | 1
+C | Q | 5
+
+
+
+
 References
 * https://www.tutlane.com/tutorial/sqlite/sqlite-indexes
 * https://dzone.com/articles/database-btree-indexing-in-sqlite
